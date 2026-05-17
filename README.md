@@ -1,75 +1,60 @@
-# The Ministry OS — FAITHFUL educational site
+# FAITHFUL — AI for the Church
 
-The educational web property for **FAITHFUL** — an article, resource, and
-newsletter site that helps church leaders use AI without losing doctrine,
-privacy, or pastoral trust.
+A free, plain-language **learning resource** on artificial intelligence for
+pastors, lay leaders, and church teams.
+
+It is deliberately **not** a product site. There is nothing to buy, install,
+log into, or subscribe to — no forms, no database, no funnel. The purpose is
+purely educational: help church leaders understand AI, see how congregations
+use it, think through policy, and keep current.
 
 Static HTML / CSS / JS. No build step. Every page works without JavaScript;
 JS is progressive enhancement only.
 
-> This is the **educational publisher** surface (`FAITHFUL` / "The Ministry OS"),
-> deliberately separate from the **product** marketing site at `faithful/landing-page/`
-> (the Faithful AI agent platform). See `.claude/rules/faithful-source-of-truth.md`.
+> Separate from the **product** site at `faithful/landing-page/` (the Faithful AI
+> agent platform). See `.claude/rules/faithful-source-of-truth.md`.
 
 ## Pages
 
 | File | Purpose |
 |---|---|
-| `index.html` | The hub — hero, topics, featured articles, stats, resources, newsletter |
-| `articles.html` | Article index with topic filtering |
-| `article-ai-policy.html` | Article — Your church needs an AI policy |
-| `article-bulletin.html` | Article — Write your Sunday bulletin in 10 minutes |
-| `article-sermon-research.html` | Article — AI for sermon research |
-| `article-first-time-guests.html` | Article — The Monday after: guest follow-up |
-| `resources.html` | Resource library — templates, checklists, prompt packs |
-| `newsletter.html` | The Ministry OS — subscribe, what's inside, issue archive, privacy |
-| `about.html` | About the publication + Ricky West |
+| `index.html` | The overview — an editorial scroll: the landscape, how churches use AI, discernment, what's changing, the guides, references |
+| `articles.html` | The Guides — editorial index of the in-depth guides |
+| `article-ai-policy.html` | Guide — Your church needs an AI policy |
+| `article-bulletin.html` | Guide — Write your Sunday bulletin in 10 minutes |
+| `article-sermon-research.html` | Guide — AI for sermon research |
+| `article-first-time-guests.html` | Guide — The Monday after: guest follow-up |
+| `resources.html` | The Reference Desk — practical tools, the AI tools' own policies, outside research |
+| `about.html` | Why this resource exists + editorial independence |
 | `404.html` | Not-found page |
 
-## Shared assets
+Shared: `styles.css` (editorial design system), `main.js`, `.nojekyll`.
 
-| File | Purpose |
-|---|---|
-| `styles.css` | Full design system — brand tokens, layout, components, motion |
-| `main.js` | Nav, scroll reveal, count-up, reading progress, filtering, share, forms |
-| `.nojekyll` | Serve files as-is on GitHub Pages |
+## Design
 
-## Brand
+Editorial / field-guide aesthetic — typography, hairline rules, color zones,
+and whitespace carry the structure. **No card grids, no SaaS framing.** Brand:
+navy + cobalt (mirrors `faithful-ai/globals.css`), gold used sparingly. Fonts:
+Newsreader (editorial headlines + reading), Montserrat (labels/nav), Inter
+(UI/body). Motion: hero line-reveal, scroll reveals, a slow marquee — calm,
+not flashy.
 
-Mirrors `faithful-ai/src/app/globals.css` — navy (`--ink-*`) + cobalt
-(`--accent-*`), with gold (`--gold-*`) reserved for premium / resource accents.
-No Turnkey emerald. Typography: **Montserrat** (display), **Inter** (UI/body),
-**Newsreader** (long-form article reading + editorial italics). Aesthetic:
-light editorial / journal — distinct from the dark-hero product landing page.
+## Re-orientation note (2026-05-17)
 
-## Newsletter forms
+This site was first built SaaS-style (subscribe funnels, "platform" CTAs, card
+grids) and re-oriented into a pure educational resource: removed all newsletter
+/ email capture, the "platform" CTAs, and card layouts; rebuilt as an editorial
+reading experience; added a "Keeping Current" section and a real References desk
+(the AI companies' own policies + outside research).
 
-The subscribe forms (`#newsletterForm`, `#footerForm`, `#newsletterPageForm`)
-are front-end only — they show a success state but are **not wired to a live
-provider**. Connect to Beehiiv (the FAITHFUL content engine's newsletter
-platform) or another ESP before launch: replace the `bindForm` handler in
-`main.js` with a real POST, or swap the `.subscribe-card` form for the
-provider's embed.
+## Pre-launch checklist
 
-## Resource downloads
-
-Resource-card links in `resources.html` use `href="#"` with `data-resource`
-hooks. Point them at real files (PDF / DOCX) or a gated download flow before
-launch.
-
-## Deploy
-
-Static — host anywhere. For GitHub Pages, create the repo under the
-`turnkeycfo` org (per `.claude/rules/github-org.md`), push these files to the
-Pages branch root. Canonical URLs assume `learn.faithful.ai`; add a `CNAME`
-file with that domain once DNS is pointed, or update the `<link rel="canonical">`
-and OG `og:url` tags to the actual host.
-
-## Status — pre-launch checklist
-
-- [ ] Wire newsletter forms to a live ESP (Beehiiv)
-- [ ] Replace resource `#` links with real downloadable files
+- [ ] Resource downloads in `resources.html` are `#` placeholders — attach real
+      template / checklist files (look for `data-resource` attributes)
 - [ ] Add real OG share images (`og:image`) per page
-- [ ] Confirm domain + add `CNAME` (or update canonical/OG URLs)
-- [ ] Replace the "200+ congregations" / issue-archive figures with real numbers
-- [ ] Add a real headshot for Ricky West (currently a monogram avatar)
+- [ ] Confirm domain + add a `CNAME` file (canonical/OG URLs assume
+      `learn.faithful.ai`), or update those tags to the live host
+- [ ] The "Keeping Current" entries are evergreen explainers — refresh as the
+      tools genuinely change
+- [ ] Add a real photo of Ricky West (currently a monogram avatar)
+- [ ] Verify the external reference links still resolve before launch
